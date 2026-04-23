@@ -1,5 +1,5 @@
 import pygame
-from setting import * #変数値を収容したsetting.pyファイルをインポート
+from setting import * #変数値を収容したsetting.pyファイルをインポート *マークは、そのファイルの中身の変数、関数などを全部をインポートできる
 from game import Game #Gameクラスをインポート
 
 pygame.init()
@@ -11,7 +11,7 @@ pygame.display.set_caption('shooting game')
 #FPSの設定
 clock = pygame.time.Clock()
 
-#ゲームクラスの呼び出し 変数gameに代入
+#game.pyのゲームクラスの呼び出し 変数gameに代入
 game = Game()
 
 #メインループ-----------------------------------------------------------------------
@@ -30,6 +30,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
             
+        #エスケープキーを押した場合でもゲームが閉じる
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 run = False
@@ -43,5 +44,5 @@ while run:
 
 
 #-----------------------------------------------------------------------------------
-
+#ゲームの終了
 pygame.quit()

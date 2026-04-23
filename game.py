@@ -1,17 +1,34 @@
 import pygame
 from setting import * #変数値を収容したsetting.pyファイルをインポート
+from player import Player
 
+#ゲーム全体に関わる処理を担うクラス
 class Game:
     
     def __init__(self):
         #ゲーム画面がself.screenに入る
         self.screen = pygame.display.get_surface()
+
+
+        #グループの作成
+        self.create_group()
         
+
+        #自機
+        player = Player(self.player_group, 300, 500)
+
+
         #背景
         self.pre_bg_img = pygame.image.load('assets/img/background/bg.png')
         self.bg_img = pygame.transform.scale(self.pre_bg_img, (screen_width, screen_height))
         self.bg_y = 0
-        self.scroll_speed = 0.5
+        self.scroll_speed = 0.5 #背景スクロールの速度
+
+
+    def create_group(self):
+        self.player_group = pygame.sprite.GroupSingle()
+
+
         
     #背景をスクロールさせるメソッド
     def scroll_bg(self):
@@ -25,5 +42,9 @@ class Game:
         #blitメソッドで描画したい画像と描画する位置を指定 pygameの座標は画面左上が原点
         # self.screen.blit(self.bg_img, (0, 0))
         self.scroll_bg()
+
+        #グループの描画と更新
+        self.player_group.draw(self.screen)
+        self.player_group.update()
         
         
